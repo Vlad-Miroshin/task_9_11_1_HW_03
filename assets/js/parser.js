@@ -1,21 +1,29 @@
-export const parser =  {
+import {PersonParts} from './classes.js';
 
-    data: '',
+export async function parser (uri) {
 
-    load: function(uri) {
+        let data;
 
-        // fetch(uri)
-        // .then(response => response.json())
-        // .then(data => console.log(data));
-
-
-        fetch(uri)
+       await fetch(uri)
         .then(response => response.json())
-        .then(function(data) {
-            this.data = data;
-        });
+        .then(val => data = val);
 
-        return this.data;
-    }
 
+        let dto = new PersonParts();
+
+        for (let i = 1; i <= data.surname.count; i++) {
+            dto.surname.push(data.surname.list[`id_${i}`]);
+        };
+
+        for (let i = 1; i <= data.firstNameMale.count; i++) {
+            dto.firstName_M.push(data.firstNameMale.list[`id_${i}`]);
+        };
+
+        dto.firstName_F = data.firstNameFemale;
+        dto.patronymic_M = data.patronymicMale;
+        dto.patronymic_F = data.patronymicFemale;
+        dto.profession_M = data.professionMale;
+        dto.profession_F = data.professionFemale;
+
+        return dto;
 }
