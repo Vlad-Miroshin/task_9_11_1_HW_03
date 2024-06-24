@@ -1,4 +1,4 @@
-import {PersonParts} from './classes.js';
+import {Person, PersonParts} from './classes.js';
 
 const GENDERS = [1, 2];
 
@@ -18,48 +18,42 @@ export const generator = {
     },
 
     getEmptyPerson: function() {
-        return {
-            gender: 0,
-            genderCaption: '',
-            surname: '',
-            firstName: '',
-            patronymic: '',
-            birthCaption: '',
-            birthDay: '',
-            profession: '',
-            image: 'unknown.png'
-        };
+        const pers = new Person();
+        pers.gender = 0;
+        pers.image = 'unknown.png'
+
+        return pers;
     },
 
     createPerson: function() {
-        const person = this.getEmptyPerson();
+        const pers = this.getEmptyPerson();
 
         if (this.parts) {
-            person.gender = getRandomItem(GENDERS);
-            person.birthDay = getRandomBirthDay();
+            pers.gender = getRandomItem(GENDERS);
+            pers.birthDay = getRandomBirthDay();
 
-            if (person.gender === 1) {
-                person.genderCaption = "мужской",
-                person.surname = getRandomItem(this.parts.surname),
-                person.firstName = getRandomItem(this.parts.firstName_M),
-                person.patronymic = getRandomItem(this.parts.patronymic_M),
-                person.birthCaption = "родился",
-                person.profession = getRandomItem(this.parts.profession_M),
-                person.image = getRandomItem(IMG_MALE)
+            if (pers.gender === 1) {
+                pers.genderCaption = "мужской",
+                pers.surname = getRandomItem(this.parts.surname),
+                pers.firstName = getRandomItem(this.parts.firstName_M),
+                pers.patronymic = getRandomItem(this.parts.patronymic_M),
+                pers.birthCaption = "родился",
+                pers.profession = getRandomItem(this.parts.profession_M),
+                pers.image = getRandomItem(IMG_MALE)
             } 
             else 
             {
-                person.genderCaption = "женский",
-                person.surname = feminizeSurname(getRandomItem(this.parts.surname)),
-                person.firstName = getRandomItem(this.parts.firstName_F),
-                person.patronymic = getRandomItem(this.parts.patronymic_F),
-                person.birthCaption = "родилась",
-                person.profession = getRandomItem(this.parts.profession_F),
-                person.image = getRandomItem(IMG_FEMALE)
+                pers.genderCaption = "женский",
+                pers.surname = feminizeSurname(getRandomItem(this.parts.surname)),
+                pers.firstName = getRandomItem(this.parts.firstName_F),
+                pers.patronymic = getRandomItem(this.parts.patronymic_F),
+                pers.birthCaption = "родилась",
+                pers.profession = getRandomItem(this.parts.profession_F),
+                pers.image = getRandomItem(IMG_FEMALE)
             }
         }
             
-        return person;
+        return pers;
     }
 }
 

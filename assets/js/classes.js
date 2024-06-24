@@ -11,17 +11,12 @@ class PersonParts {
 }
 
 class Person {
-    _gender = "1";
-
-    constructor (gender) {
-        this._gender = gender;
-    };
-
-    getGenderCaption() {
-        return gender === "1" ? "Мужской" : "Женский";
-    };
-
-    getImageName() {
-
-    }
+    gender = 0;
+    genderCaption = '';
+    surname = '';
+    firstName = '';
+    patronymic = '';
+    birthCaption = '';
+    profession = '';
+    image = '';
 }
