@@ -9,21 +9,21 @@ export async function parser (uri) {
         .then(val => data = val);
 
 
-        let dto = new PersonParts();
+        let parts = new PersonParts();
 
         for (let i = 1; i <= data.surname.count; i++) {
-            dto.surname.push(data.surname.list[`id_${i}`]);
+            parts.surname.push(data.surname.list[`id_${i}`]);
         };
 
         for (let i = 1; i <= data.firstNameMale.count; i++) {
-            dto.firstName_M.push(data.firstNameMale.list[`id_${i}`]);
+            parts.firstName_M.push(data.firstNameMale.list[`id_${i}`]);
         };
 
-        dto.firstName_F = data.firstNameFemale;
-        dto.patronymic_M = data.patronymicMale;
-        dto.patronymic_F = data.patronymicFemale;
-        dto.profession_M = data.professionMale;
-        dto.profession_F = data.professionFemale;
+        parts.firstName_F = data.firstNameFemale;
+        parts.patronymic_M = data.patronymicMale;
+        parts.patronymic_F = data.patronymicFemale;
+        parts.profession_M = data.professionMale;
+        parts.profession_F = data.professionFemale;
 
-        return dto;
+        return parts;
 }

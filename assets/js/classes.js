@@ -11,7 +11,17 @@ class PersonParts {
 }
 
 class Person {
+    _gender = "1";
+
     constructor (gender) {
-        this.gender = gender;
+        this._gender = gender;
+    };
+
+    getGenderCaption() {
+        return gender === "1" ? "Мужской" : "Женский";
+    };
+
+    getImageName() {
+
     }
 }
