@@ -12,9 +12,11 @@ const IMG_FEMALE = [
 
 export const generator = {
     parts: PersonParts,
+    lastPerson: Person,
 
     init: function(parts) {
         this.parts = parts;
+        this.lastPerson = generator.getEmptyPerson();    
     },
 
     getEmptyPerson: function() {
@@ -39,7 +41,7 @@ export const generator = {
                 pers.patronymic = getRandomItem(this.parts.patronymic_M),
                 pers.birthCaption = "родился",
                 pers.profession = getRandomItem(this.parts.profession_M),
-                pers.image = getRandomItem(IMG_MALE)
+                pers.image = getRandomItemNoRepeat(IMG_MALE, this.lastPerson.image)
             } 
             else 
             {
@@ -49,10 +51,12 @@ export const generator = {
                 pers.patronymic = getRandomItem(this.parts.patronymic_F),
                 pers.birthCaption = "родилась",
                 pers.profession = getRandomItem(this.parts.profession_F),
-                pers.image = getRandomItem(IMG_FEMALE)
+                pers.image = getRandomItemNoRepeat(IMG_FEMALE, this.lastPerson.image)
             }
         }
             
+        this.lastPerson = pers;
+
         return pers;
     }
 }
@@ -63,6 +67,17 @@ function getRandomInt(min = 0, max = 1) {
 
 function getRandomItem(items) {
     return items[Math.round(Math.random() * (items.length - 1))];
+}
+
+function getRandomItemNoRepeat(items, last) {
+    let item;
+    let attempt = 0;
+    do {
+        item = getRandomItem(items);
+        attempt++;
+    } while (item === last && attempt < 5);
+
+    return item;
 }
 
 function feminizeSurname(val) {
