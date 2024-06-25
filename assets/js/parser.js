@@ -41,22 +41,22 @@ export async function parser (uri) {
 
 function createPatronymicMale(firstName) {
     if (firstName.endsWith('й'))
-        return firstName.substr(0, firstName.length - 1) + 'евич';
+        return firstName.slice(0, firstName.length - 1) + 'евич';
     else if (firstName.endsWith('слав'))
         return firstName + 'ич';
     else if (firstName.endsWith('а'))
-        return firstName.substr(0, firstName.length - 1) + 'ович';
+        return firstName.slice(0, firstName.length - 1) + 'ович';
     else
         return firstName + 'ович';
 }
 
 function createPatronymicFemale(firstName) {
     if (firstName.endsWith('й'))
-        return firstName.substr(0, firstName.length - 1) + 'евна';
+        return firstName.slice(0, firstName.length - 1) + 'евна';
     else if (firstName.endsWith('слав'))
         return firstName + 'на';
     else if (firstName.endsWith('а'))
-        return firstName.substr(0, firstName.length - 1) + 'овна';
+        return firstName.slice(0, firstName.length - 1) + 'овна';
     else
         return firstName + 'овна';
 }
