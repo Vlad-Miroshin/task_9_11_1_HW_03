@@ -29,10 +29,6 @@ export async function parser (uri) {
             parts.patronymic_F.push(createPatronymicFemale(parts.firstName_M[i]));
         };
 
-        console.log(parts.patronymic_M);
-        console.log(parts.patronymic_F);
-
-        
         parts.profession_M = data.professionMale;
         parts.profession_F = data.professionFemale;
 
