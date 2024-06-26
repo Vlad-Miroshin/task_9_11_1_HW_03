@@ -19,4 +19,6 @@ class Person {
     birthCaption = '';
     profession = '';
     image = '';
+
+    isEmpty() { return this.gender === 0; }
 }

@@ -27,7 +27,7 @@ function clear() {
 }
 
 function update(pers) {
-    if (pers.gender === 0) {
+    if (pers.isEmpty()) {
         pers_fullname.innerHTML = '<br>';
         pers_prof.innerHTML = '<br>';
         pers_gender.innerHTML = '<br>';
